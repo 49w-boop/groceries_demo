@@ -2,23 +2,11 @@ import path from 'path';
 import vue from '@vitejs/plugin-vue';
 // import babel from '@vitejs/plugin-babel';
 export default async ({ command, mode }) => {
-  const buildDir = mode ? 'dist' : 'build';
   let config = {
     base: '/',
     build: {
-      outDir: buildDir,
-      assetsDir: '',
-      assetsInlineLimit: 4096,
-      cssCodeSplit: true,
-      sourcemap: false,
-      manifest: false,
-      minify: 'terser',
-      rollupOptions: {
-        input: 'index.html',
-        output: {
-          format: 'es'
-        }
-      }
+      outDir: 'dist',
+      assetsDir: 'assets'
     },
     server: {
       host: 'localhost',

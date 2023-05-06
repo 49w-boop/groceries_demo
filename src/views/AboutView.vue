@@ -1,8 +1,11 @@
 <template>
-  <div style="width: 500px; height: 300px">
-    <div ref="quillEditor"></div>
+  <div style="display: flex">
+    <div>
+      <div style="width: 500px; height: 300px"><div ref="quillEditor"></div></div>
+    </div>
+    <div style="width: 500px; height: 300px" v-html="editorHtml"></div>
   </div>
-  <el-button @click="xxx">提交</el-button>
+  <el-button @click="xxx" type="primary" size="">提交</el-button>
 </template>
 
 <script setup lang="ts">
@@ -32,18 +35,19 @@ const options = {
   strict: true // 是否启用严格模式，即禁止非法 HTML
 };
 const editor = ref();
+const editorHtml = ref();
 onMounted(() => {
   editor.value = new Quill(quillEditor.value!, options);
 });
 const xxx = () => {
-  // editor.value.root.innerHTML html字符串
   console.log(editor.value, 'editor');
-  if (editor.value.isEmpty()) {
-    ElMessage.error('请先输入');
-    return;
-  }
-  // let html = ''; // 后端返回的 HTML 字符串
-  // let delta = editor.value.clipboard.convert(html, 'api');
+  // if (editor.value.isEmpty()) {
+  //   ElMessage.error('请先输入');
+  //   return;
+  // }
+  //  html字符串
+  editorHtml.value = editor.value.root.innerHTML || '';
+  let delta = editor.value.clipboard.convert(editorHtml.value, 'api');
   // editor.value.setContents(delta);
 };
 </script>
