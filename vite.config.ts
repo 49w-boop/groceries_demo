@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 // import babel from '@vitejs/plugin-babel';
 export default async ({ command, mode }) => {
   let config = {
-    base: '/',
+    base: '/groceries_demo/',
     build: {
       outDir: 'dist',
       assetsDir: 'assets'
